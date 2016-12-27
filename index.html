@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html manifest="cache.appcache">
+<head>
+    <title>Things to do</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link type="icon" sizes="192x192" href="/icons/icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png" />
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div id="header">
+        <font v-show="open_todo_count == 0" id="title">Nothing to do</font>
+        <font v-show="open_todo_count == 1" id="title">A thing to do</font>
+        <font v-show="open_todo_count > 1" id="title">{{ open_todo_count }} things to do</font>
+        <button id="clear-button" v-on:click="clear_done()">Clean Up</button>
+    </div>
+    <div id="content">
+        <ol type="1" id="tasklist">
+            <todo v-for="t in todos" :todo="t" v-bind:class="{'done': t.done}"></todo>
+        </ul>
+    </div>
+    <div id="footer">
+        <input id="todo-add-input" type="text" placeholder="One more thing to do" @keydown.enter="add_todo()" v-model="message" maxlength="160">
+    </div>
+</div>
+</body>
+<script src="script.js"></script>
+</html>

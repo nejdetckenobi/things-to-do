@@ -1,0 +1,18 @@
+CACHE MANIFEST
+# v1.0.7a
+
+/index.html
+/manifest.json
+/favicon.ico
+/style.css
+/script.js
+/vue.js
+/fonts/OpenSans-Light-webfont.woff
+/icons/icon.png
+/icons/apple-icon-57x57.png
+/icons/apple-icon-72x72.png
+/icons/apple-icon-114x114.png
+/icons/apple-icon-144x144.png
+
+NETWORK:
+*
