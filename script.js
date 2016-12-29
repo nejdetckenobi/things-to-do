@@ -27,10 +27,13 @@ app = new Vue({
         'todos': []
     },
     'created': function () {
-        if(!document.cookie) {
-            document.cookie = JSON.stringify(sample_data);
+        data = localStorage.getItem('todos');
+        if(!data) {
+            console.log('nothing found.')
+            localStorage.setItem('todos', JSON.stringify(sample_data));
         } else {
-            this.todos = JSON.parse(document.cookie).todos;
+            console.log(data);
+            this.todos = JSON.parse(data).todos;
         }
     },
     'computed': {
@@ -51,14 +54,15 @@ app = new Vue({
             }
         },
         'save_todos': function () {
-            JSON.stringify({'todos': this.todos});
-            document.cookie = JSON.stringify({'todos': this.todos});
+            localStorage.setItem('todos', JSON.stringify({'todos': this.todos}));
         },
         'clear_done': function () {
-            if(!document.cookie) {
-                document.cookie = '{"todos": []}';
+            data = localStorage.getItem('todos')
+            if(!data) {
+                console.log('naber');
+                localStorage.setItem('todos', '{"todos": []}');
             } else {
-                this.todos = JSON.parse(document.cookie).todos;
+                this.todos = JSON.parse(data).todos;
                 new_list = [];
                 for (var i = 0; i < this.todos.length; i++) {
                     if(!this.todos[i].done) {
